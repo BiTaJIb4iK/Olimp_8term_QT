@@ -1,4 +1,4 @@
-std::string floatToTheBoat(x, y, x1, y1, x2, y2){
+std::string floatToTheBoat(int x, int y, int x1, int y1, int x2, int y2) {
 	std::pair<float, float> TL, TR, BL, BR;
 	BL.first = x1;
 	BL.second = y1;
@@ -13,7 +13,7 @@ std::string floatToTheBoat(x, y, x1, y1, x2, y2){
 	BR.second = BL.second;
 
 
-	std::pair<float, float> swimmer = {x, y};
+	std::pair<float, float> swimmer = { x, y };
 
 	float dist[8] = {
 		findDistance(swimmer, BL),
@@ -25,11 +25,9 @@ std::string floatToTheBoat(x, y, x1, y1, x2, y2){
 		findDistance(swimmer, findCenterTwoPoints(BR, TR)),
 		findDistance(swimmer, findCenterTwoPoints(BL, BR)),
 		findDistance(swimmer, findCenterTwoPoints(BL, TL))
-	}
+	};
 
-
-
-	switch(std::min_element(dist, dist + 8) - dist){
+	switch(std::min_element(dist, dist + 8) - dist) {
 		case 0:
 			return "South-West";
 			break;
@@ -54,17 +52,17 @@ std::string floatToTheBoat(x, y, x1, y1, x2, y2){
 		case 7:
 			return "West";
 			break;
-	}
+		}
 
 	return "Error";
 
 }
 
-float findDistance(std::pair<float, float>& p1, std::pair<float, float>& p2){
-	return std::sqrt(std::pow(p2.first - p1.first, 2) + std::pow(p2.second - p1.second));
+float findDistance(std::pair<float, float>& p1, std::pair<float, float> p2) {
+	return std::sqrt(std::pow(p2.first - p1.first, 2) + std::pow(p2.second - p1.second, 2));
 }
 
 
-std::pair<float, float> findCenterTwoPoints(std::pair<float, float>& p1, std::pair<float, float>& p2){
-	return {(p1.first + p2.first)/2, (p1.second + p2.second)/2};
+std::pair<float, float> findCenterTwoPoints(std::pair<float, float>& p1, std::pair<float, float>& p2) {
+	return { (p1.first + p2.first) / 2, (p1.second + p2.second) / 2 };
 }
